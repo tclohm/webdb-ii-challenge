@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 
 const carsRouter = require('../cars/cars-router.js');
+const salesRouter = require('../sales/sales-router.js');
 
 const server = express();
 
@@ -20,5 +21,6 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/cars', carsRouter);
+server.use('/api/sales', salesRouter);
 
 module.exports = server;
