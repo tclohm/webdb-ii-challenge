@@ -49,20 +49,21 @@ router.put('/:id', (req, res) => {
 		mileage: req.body.mileage, 
 		transmissionType: req.body.transmissionType, 
 		status: req.body.status
-	}
+	};
 	db('cars').where("id", req.params.id).update(payload)
 		.then(identifier => {
-			res.status(201).json(db('cars').where({ id: identifier[0] }));
+			res.status(201).json(payload);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to replace data' });
+			console.log(err);
+			res.status(500).json({ message: "Failed to replace data" });
 		});
 });
 
 router.delete('/:id', (req, res) => {
 	db('cars').where({ id: req.params.id }).del()
 		.then(identifier => {
-			res.status(204).json({ message: "Deleted car" });
+			res.status(204);
 		})
 		.catch(err => {
 			res.status(500).json({ message: "Error deleted car" });
