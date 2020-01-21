@@ -6,7 +6,7 @@ const db = knex(config.development);
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	db.('cars')
+	db('cars')
 		.then(cars => {
 			res.json(cars)
 		})
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	const { id } = req.params;
-	db.('cars').where({ id }).first()
+	db('cars').where({ id }).first()
 		.then(car => {
 			res.json(car);
 		})
